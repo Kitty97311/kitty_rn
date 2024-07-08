@@ -5,14 +5,23 @@ export default function App() {
   const [backgroundColor, setBackgroundColor] = useState('#fff');
 
   const handleOutsideClick = () => {
-    setBackgroundColor(bg_array[cur_index ++]); // Change the background color when clicking outside
+    setBackgroundColor(getRandomColor()); // Change the background color when clicking outside
     cur_index = (cur_index) % 3
   };
+
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   return (
     <TouchableWithoutFeedback onPress={handleOutsideClick}>
       <View style={[styles.container, { backgroundColor }]}>
-        <Text>Welcome to My React Native App!</Text>
+        <Text>Hello there</Text>
       </View>
     </TouchableWithoutFeedback>
   );
